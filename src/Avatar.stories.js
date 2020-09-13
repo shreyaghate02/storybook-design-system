@@ -1,33 +1,50 @@
-import React from "react";
+import React from 'react';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 
-import { Avatar } from "./Avatar";
+import { Avatar } from './Avatar';
 
 export default {
-  title: "Design System/Avatar",
-  component: Avatar,
+  title: 'Design System|Avatar',
+
+  parameters: {
+    component: Avatar,
+  },
 };
 
-export const Standard = (args) => <Avatar {...args} />;
-Standard.args = {
-  size: "large",
-  username: "Tom Coleman",
-  src: "https://avatars2.githubusercontent.com/u/132554",
-};
+export const standard = () => (
+  <Avatar
+    size="large"
+    username="Tom Coleman"
+    src="https://avatars2.githubusercontent.com/u/132554"
+  />
+);
 
-export const Sizes = (args) => (
+export const sizes = () => (
   <div>
-    <Avatar {...args} size="large" />
-    <Avatar {...args} size="medium" />
-    <Avatar {...args} size="small" />
-    <Avatar {...args} size="tiny" />
+    <Avatar
+      size="large"
+      username="Tom Coleman"
+      src="https://avatars2.githubusercontent.com/u/132554"
+    />
+    <Avatar
+      size="medium"
+      username="Tom Coleman"
+      src="https://avatars2.githubusercontent.com/u/132554"
+    />
+    <Avatar
+      size="small"
+      username="Tom Coleman"
+      src="https://avatars2.githubusercontent.com/u/132554"
+    />
+    <Avatar
+      size="tiny"
+      username="Tom Coleman"
+      src="https://avatars2.githubusercontent.com/u/132554"
+    />
   </div>
 );
-Sizes.args = {
-  username: "Tom Coleman",
-  src: "https://avatars2.githubusercontent.com/u/132554",
-};
 
-export const Initials = (args) => (
+export const initials = () => (
   <div>
     <Avatar username="Tom Coleman" />
     <Avatar username="Dominic Nguyen" />
@@ -36,19 +53,16 @@ export const Initials = (args) => (
   </div>
 );
 
-export const Loading = (args) => (
-    <div>
-      <Avatar {...args} size="large" />
-      <Avatar {...args} size="medium" />
-      <Avatar {...args} size="small" />
-      <Avatar {...args} size="tiny" />
-    </div>
-  );
-  Loading.args = {
-    loading: true,
-  };
+export const loading = () => (
+  <div>
+    <Avatar size="large" loading />
+    <Avatar size="medium" loading />
+    <Avatar size="small" loading />
+    <Avatar size="tiny" loading />
+  </div>
+);
 
-export const Large = (args) => (
+export const large = () => (
   <div>
     <Avatar loading size="large" />
     <Avatar size="large" username="Tom Coleman" />
@@ -59,3 +73,27 @@ export const Large = (args) => (
     />
   </div>
 );
+
+export const knobs = () => (
+  <Avatar
+    loading={boolean('Loading')}
+    size={select('Size', ['tiny', 'small', 'medium', 'large'])}
+    username="Dominic Nguyen"
+    src="https://avatars2.githubusercontent.com/u/263385"
+  />
+);
+
+// const Template = args => <Avatar {...args} />;
+
+export const Controls = () => (
+  <Avatar
+    loading={boolean('false')}
+    size={select('Size', ['tiny'])}
+    username="Dominic Nguyen"
+    src="https://avatars2.githubusercontent.com/u/263385"
+  />
+);
+
+knobs.story = {
+  decorators: [withKnobs],
+};

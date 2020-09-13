@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { action } from '@storybook/addon-actions';
 
 import { Button } from './Button';
 import { Icon } from './Icon';
@@ -14,15 +15,15 @@ const CustomButton = styled.button`
 `;
 
 function ButtonWrapper(props) {
-  return <CustomButton {...props}/>;
+  return <CustomButton onClick={action('button action click')} {...props} />;
 }
 
 export default {
-  title: 'Design System/Button',
+  title: 'Design System|Button',
   component: Button,
 };
 
-export const AllButtons = (args) => (
+export const allButtons = () => (
   <div>
     <Button appearance="primary">Primary</Button>
     <Button appearance="secondary">Secondary</Button>
@@ -75,9 +76,11 @@ export const AllButtons = (args) => (
   </div>
 );
 
-AllButtons.storyName= 'all buttons';
+allButtons.story = {
+  name: 'all buttons',
+};
 
-export const buttonWrapper = (args) => (
+export const buttonWrapper = () => (
   <div>
     <ButtonWrapper>Original Button Wrapper</ButtonWrapper>
     <br />
@@ -144,9 +147,11 @@ export const buttonWrapper = (args) => (
   </div>
 );
 
-buttonWrapper.storyName='button wrapper';
+buttonWrapper.story = {
+  name: 'button wrapper',
+};
 
-export const AnchorWrapper = (args) => (
+export const anchorWrapper = () => (
   <div>
     <StoryLinkWrapper to="http://storybook.js.org">Original Link Wrapper</StoryLinkWrapper>
     <br />
@@ -289,4 +294,6 @@ export const AnchorWrapper = (args) => (
   </div>
 );
 
-AnchorWrapper.storyName= 'anchor wrapper';
+anchorWrapper.story = {
+  name: 'anchor wrapper',
+};
